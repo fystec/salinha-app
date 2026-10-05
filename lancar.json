@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.11",
-  "base": "https://salinha.live/desktop-rel/1.0.11",
+  "versao": "1.0.12",
+  "base": "https://salinha.live/desktop-rel/1.0.12",
   "pedacos": 5,
-  "notas": "Mais segurança: liberar o controle do seu PC agora sempre pede confirmação numa janela do Windows, e o app só abre o salinha.live."
+  "notas": "Mais proteção contra golpes: arquivos baixados pela Salinha ganham a marca \"veio da internet\" do Windows, que avisa antes de rodar programas."
 }
