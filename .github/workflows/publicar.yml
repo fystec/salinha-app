@@ -1,0 +1,42 @@
+# Publica uma versão nova do app de PC da Salinha.
+# O instalador é montado em outro lugar e fica (temporariamente) em salinha.live/desktop-rel/<versão>/, em pedaços de 24 MB.
+# Quando o arquivo lancar.json muda, este robô junta os pedaços, confere o código de verificação (sha512)
+# e cria o lançamento — de onde o app de PC de todo mundo baixa a atualização sozinho.
+name: Publicar versão do app de PC
+
+on:
+  push:
+    paths: ['lancar.json']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Juntar e conferir o instalador
+        run: |
+          V=$(jq -r .versao lancar.json)
+          BASE=$(jq -r .base lancar.json)
+          N=$(jq -r .pedacos lancar.json)
+          echo "V=$V" >> "$GITHUB_ENV"
+          mkdir out && cd out
+          for i in $(seq 0 $((N-1))); do curl -fsSL --retry 5 -o "p$i" "$BASE/Salinha-Setup.exe.part$(printf %02d $i)"; done
+          cat $(for i in $(seq 0 $((N-1))); do echo p$i; done) > Salinha-Setup.exe && rm p*
+          curl -fsSL --retry 5 -o Salinha-Setup.exe.blockmap "$BASE/Salinha-Setup.exe.blockmap"
+          curl -fsSL --retry 5 -o latest.yml "$BASE/latest.yml"
+          grep -q "^version: $V$" latest.yml || { echo "latest.yml não é da versão $V"; exit 1; }
+          WANT=$(grep -m1 '^sha512:' latest.yml | awk '{print $2}')
+          GOT=$(openssl dgst -sha512 -binary Salinha-Setup.exe | base64 -w0)
+          [ "$WANT" = "$GOT" ] || { echo "O instalador chegou diferente do esperado (sha512)"; exit 1; }
+          ls -la
+      - name: Criar o lançamento
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd out
+          gh release view "v$V" >/dev/null 2>&1 && { echo "v$V já existe"; exit 0; }
+          gh release create "v$V" Salinha-Setup.exe Salinha-Setup.exe.blockmap latest.yml --title "$V" --notes "$(jq -r '.notas // ""' ../lancar.json)" --latest
