@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.14",
-  "base": "https://salinha.live/desktop-rel/1.0.14",
+  "versao": "1.0.15",
+  "base": "https://salinha.live/desktop-rel/1.0.15",
   "pedacos": 5,
-  "notas": "O seletor de tela voltou a abrir (estava ficando preto). Mais jogos reconhecidos, incluindo o cliente do LoL."
+  "notas": "Sobreposição no jogo (quem está na sala e quem está falando) e atualização que não fica pedindo pra reiniciar."
 }
