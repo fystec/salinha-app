@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.13",
-  "base": "https://salinha.live/desktop-rel/1.0.13",
+  "versao": "1.0.14",
+  "base": "https://salinha.live/desktop-rel/1.0.14",
   "pedacos": 5,
-  "notas": "Seletor de tela à prova de travar: só procura as janelas quando você abre a aba, e se não abrir direito a Salinha mostra uma escolha simples do Windows. Esc sempre fecha."
+  "notas": "O seletor de tela voltou a abrir (estava ficando preto). Mais jogos reconhecidos, incluindo o cliente do LoL."
 }
