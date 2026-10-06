@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.16",
-  "base": "https://salinha.live/desktop-rel/1.0.16",
+  "versao": "1.0.17",
+  "base": "https://salinha.live/desktop-rel/1.0.17",
   "pedacos": 5,
-  "notas": "Botão pra testar a sobreposição no jogo (Configurações > Compartilhar tela)."
+  "notas": "Atualização mais firme: um clique em reiniciar já instala a versão mais nova."
 }
