@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.15",
-  "base": "https://salinha.live/desktop-rel/1.0.15",
+  "versao": "1.0.16",
+  "base": "https://salinha.live/desktop-rel/1.0.16",
   "pedacos": 5,
-  "notas": "Sobreposição no jogo (quem está na sala e quem está falando) e atualização que não fica pedindo pra reiniciar."
+  "notas": "Botão pra testar a sobreposição no jogo (Configurações > Compartilhar tela)."
 }
