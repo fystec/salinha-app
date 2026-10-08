@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.17",
-  "base": "https://salinha.live/desktop-rel/1.0.17",
+  "versao": "1.0.18",
+  "base": "https://salinha.live/desktop-rel/1.0.18",
   "pedacos": 5,
-  "notas": "Atualização mais firme: um clique em reiniciar já instala a versão mais nova."
+  "notas": "Mais segurança: login do app protegido, permissão pra jogar no PC vale só pra quem você liberou e o controle para sozinho se algo travar."
 }
