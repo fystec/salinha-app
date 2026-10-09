@@ -1,6 +1,1 @@
-{
-  "versao": "1.0.18",
-  "base": "https://salinha.live/desktop-rel/1.0.18",
-  "pedacos": 5,
-  "notas": "Mais segurança: login do app protegido, permissão pra jogar no PC vale só pra quem você liberou e o controle para sozinho se algo travar."
-}
+{"versao": "1.0.19", "base": "https://salinha.live/desktop-rel/1.0.19", "pedacos": 5, "notas": "Jogar no meu PC: conexão direta pela rede de casa, imagem mais nítida (H.265/AV1 na placa de vídeo), monitor virtual nas Telas virando a tela principal e janela de permissão nova."}
