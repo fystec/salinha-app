@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.27",
-  "base": "https://salinha.live/desktop-rel/1.0.27",
+  "versao": "1.0.28",
+  "base": "https://salinha.live/desktop-rel/1.0.28",
   "pedacos": 5,
-  "notas": "Programa de áudio identificado e ajustes pra versão da Microsoft Store."
+  "notas": "Transmissão e voz mais estáveis enquanto você joga, teste de microfone e admins movendo pessoas entre canais."
 }
