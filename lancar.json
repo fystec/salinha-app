@@ -1,1 +1,6 @@
-{"versao": "1.0.24", "base": "https://salinha.live/desktop-rel/1.0.24", "pedacos": 5, "notas": "Ao ligar com o Windows, a Salinha já abre na tela (antes ficava só na bandeja)."}
+{
+  "versao": "1.0.25",
+  "base": "https://salinha.live/desktop-rel/1.0.25",
+  "pedacos": 5,
+  "notas": "Som da transmissão igual ao Discord: o som do jogo vai inteiro e a voz da galera não entra. Som em estéreo."
+}
