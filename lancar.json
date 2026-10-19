@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.26",
-  "base": "https://salinha.live/desktop-rel/1.0.26",
+  "versao": "1.0.27",
+  "base": "https://salinha.live/desktop-rel/1.0.27",
   "pedacos": 5,
-  "notas": "Salinha em inglês e espanhol."
+  "notas": "Programa de áudio identificado e ajustes pra versão da Microsoft Store."
 }
