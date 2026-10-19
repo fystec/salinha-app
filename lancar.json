@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.28",
-  "base": "https://salinha.live/desktop-rel/1.0.28",
+  "versao": "1.0.29",
+  "base": "https://salinha.live/desktop-rel/1.0.29",
   "pedacos": 5,
-  "notas": "Transmissão e voz mais estáveis enquanto você joga, teste de microfone e admins movendo pessoas entre canais."
+  "notas": "Aviso de qualidade pesada no seletor de tela e ajustes de desempenho."
 }
