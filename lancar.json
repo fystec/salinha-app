@@ -1,6 +1,6 @@
 {
-  "versao": "1.0.29",
-  "base": "https://salinha.live/desktop-rel/1.0.29",
+  "versao": "1.0.30",
+  "base": "https://salinha.live/desktop-rel/1.0.30",
   "pedacos": 5,
-  "notas": "Aviso de qualidade pesada no seletor de tela e ajustes de desempenho."
+  "notas": "Atualiza sem atrapalhar (instala quando a Salinha está escondida ou ao fechar), canal de voz mais leve e comandos do jogo remoto voltando sozinhos."
 }
