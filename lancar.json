@@ -1,6 +1,10 @@
 {
-  "versao": "1.0.30",
-  "base": "https://salinha.live/desktop-rel/1.0.30",
+  "versao": "1.0.31",
+  "base": "https://salinha.live/desktop-rel/1.0.31",
   "pedacos": 5,
-  "notas": "Atualiza sem atrapalhar (instala quando a Salinha está escondida ou ao fechar), canal de voz mais leve e comandos do jogo remoto voltando sozinhos."
+  "linux": {
+    "appimage": 5,
+    "deb": 5
+  },
+  "notas": "Apertar pra falar com tecla que funciona até dentro do jogo, atualização só baixa fora de jogo e transmissão, ARC Raiders com o nome certo, botões da janela na cor do tema, app mais leve parado e chegou o app pra Linux."
 }
