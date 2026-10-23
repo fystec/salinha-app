@@ -1,10 +1,10 @@
 {
-  "versao": "1.0.32",
-  "base": "https://salinha.live/desktop-rel/1.0.32",
+  "versao": "1.0.33",
+  "base": "https://salinha.live/desktop-rel/1.0.33",
   "pedacos": 5,
   "linux": {
     "appimage": 5,
     "deb": 5
   },
-  "notas": "Atalhos de teclado que funcionam até dentro do jogo (mutar, cortar o som, transmitir) e zoom com Ctrl + e Ctrl −."
+  "notas": "Atualiza sozinho pela Microsoft Store, aviso de versão nova com botão de atualizar (também no Linux .deb) e melhorias na conexão."
 }
