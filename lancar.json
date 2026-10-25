@@ -1,10 +1,10 @@
 {
-  "versao": "1.0.33",
-  "base": "https://salinha.live/desktop-rel/1.0.33",
+  "versao": "1.0.34",
+  "base": "https://salinha.live/desktop-rel/1.0.34",
   "pedacos": 5,
   "linux": {
     "appimage": 5,
     "deb": 5
   },
-  "notas": "Atualiza sozinho pela Microsoft Store, aviso de versão nova com botão de atualizar (também no Linux .deb) e melhorias na conexão."
+  "notas": "A Salinha se atualiza sozinha: ao abrir, ou quietinha quando você está longe (nunca no meio da chamada nem com jogo aberto), sem pedir permissão do Windows."
 }
