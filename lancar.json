@@ -1,10 +1,10 @@
 {
-  "versao": "1.0.34",
-  "base": "https://salinha.live/desktop-rel/1.0.34",
+  "versao": "1.0.35",
+  "base": "https://salinha.live/desktop-rel/1.0.35",
   "pedacos": 5,
   "linux": {
     "appimage": 5,
     "deb": 5
   },
-  "notas": "A Salinha se atualiza sozinha: ao abrir, ou quietinha quando você está longe (nunca no meio da chamada nem com jogo aberto), sem pedir permissão do Windows."
+  "notas": "Atalho de mutar funcionando com jogo aberto; versão da Microsoft Store transmite sem a borda amarela no Windows 11; quem tinha as duas versões fica só com a da loja."
 }
