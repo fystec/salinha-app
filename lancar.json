@@ -1,10 +1,10 @@
 {
-  "versao": "1.0.36",
-  "base": "https://salinha.live/desktop-rel/1.0.36",
+  "versao": "1.0.37",
+  "base": "https://salinha.live/desktop-rel/1.0.37",
   "pedacos": 5,
   "linux": {
     "appimage": 5,
     "deb": 5
   },
-  "notas": "Voz sem picotar com a janela coberta ou jogando; aviso com atalho quando o Windows bloqueia o microfone; opção \"Fechar no X sai da Salinha\" no ícone perto do relógio."
+  "notas": "Some a janelinha de erro (\"boosted is not defined\") que aparecia toda hora na 1.0.36. Desculpa!"
 }
