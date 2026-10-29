@@ -2,6 +2,9 @@
 # O instalador é montado em outro lugar e fica (temporariamente) em salinha.live/desktop-rel/<versão>/, em pedaços de 24 MB.
 # Quando o arquivo lancar.json muda, este robô junta os pedaços, confere o código de verificação (sha512)
 # e cria o lançamento — de onde o app de PC de todo mundo baixa a atualização sozinho.
+# Canal beta: com "beta": true no lancar.json o lançamento sai como PRÉ-lançamento — só os PCs de teste (que procuram
+# pré-lançamentos) pegam; o /baixar e o resto continuam na última normal. Aprovada no teste, o lancar.json ganha
+# "promover": "<versão>" e o robô tira o "pré" (ela vira a última, a de todo mundo).
 name: Publicar versão do app de PC (Windows e Linux)
 
 on:
@@ -17,7 +20,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Promover a versão de teste (vira a de todo mundo)
+        id: promover
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          P=$(jq -r '.promover // empty' lancar.json)
+          [ -z "$P" ] && exit 0
+          gh release view "v$P" --json isPrerelease -q .isPrerelease | grep -qx true || { echo "v$P não existe ou já é a de todo mundo"; }
+          gh release edit "v$P" --prerelease=false --latest
+          echo "✅ v$P agora é a última (a de todo mundo)"
+          echo "feito=1" >> "$GITHUB_OUTPUT"
       - name: Juntar e conferir o instalador
+        if: steps.promover.outputs.feito != '1'
         run: |
           V=$(jq -r .versao lancar.json)
           BASE=$(jq -r .base lancar.json)
@@ -50,10 +65,13 @@ jobs:
           fi
           ls -la
       - name: Criar o lançamento
+        if: steps.promover.outputs.feito != '1'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           cd out
           gh release view "v$V" >/dev/null 2>&1 && { echo "v$V já existe"; exit 0; }
           EXTRA=""; [ "${LINUX:-}" = "1" ] && EXTRA="Salinha-x86_64.AppImage salinha_amd64.deb latest-linux.yml"
-          gh release create "v$V" Salinha-Setup.exe Salinha-Setup.exe.blockmap latest.yml $EXTRA --title "$V" --notes "$(jq -r '.notas // ""' ../lancar.json)" --latest
+          # versão de teste: pré-lançamento (não vira a "última", que é a que todo mundo baixa)
+          if [ "$(jq -r '.beta // false' ../lancar.json)" = "true" ]; then QUAL="--prerelease"; TITULO="$V (teste)"; else QUAL="--latest"; TITULO="$V"; fi
+          gh release create "v$V" Salinha-Setup.exe Salinha-Setup.exe.blockmap latest.yml $EXTRA --title "$TITULO" --notes "$(jq -r '.notas // ""' ../lancar.json)" $QUAL
