@@ -7,5 +7,6 @@
     "deb": 5
   },
   "notas": "Versão de teste: abre mais rápido ao ligar o computador, tela de sem internet que volta sozinha, atualização crítica na hora e, no Linux, modo de compatibilidade de vídeo.",
-  "beta": true
+  "beta": true,
+  "promover": "1.0.38"
 }
