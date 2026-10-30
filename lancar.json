@@ -1,12 +1,11 @@
 {
-  "versao": "1.0.38",
-  "base": "https://salinha.live/desktop-rel/1.0.38",
+  "versao": "1.0.39",
+  "base": "https://salinha.live/desktop-rel/1.0.39",
   "pedacos": 5,
   "linux": {
     "appimage": 5,
     "deb": 5
   },
-  "notas": "Versão de teste: abre mais rápido ao ligar o computador, tela de sem internet que volta sozinha, atualização crítica na hora e, no Linux, modo de compatibilidade de vídeo.",
-  "beta": true,
-  "promover": "1.0.38"
+  "notas": "Janela de escolher a tela com as cores do seu tema (modo beta).",
+  "beta": true
 }
