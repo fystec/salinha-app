@@ -7,5 +7,6 @@
     "deb": 5
   },
   "notas": "Janela de escolher a tela com as cores do seu tema (modo beta).",
-  "beta": true
+  "beta": true,
+  "promover": "1.0.39"
 }
