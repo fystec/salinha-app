@@ -24,6 +24,8 @@ jobs:
   publicar:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    env:
+      GH_REPO: ${{ github.repository }} # (sem o actions/checkout não tem pasta do git: o gh precisa saber o repositório)
     steps:
       - name: Pegar o lancar.json deste commit (sem ação de fora)
         env:
