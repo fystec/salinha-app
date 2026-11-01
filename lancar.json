@@ -7,5 +7,6 @@
     "deb": 5
   },
   "notas": "Mais segurança: app blindado, tela compartilhada só depois do seu clique e aparelhos lembrados por 30 dias no PC. E consertos.",
-  "beta": true
+  "beta": true,
+  "promover": "1.0.41"
 }
