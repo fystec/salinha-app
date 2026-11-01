@@ -9,17 +9,28 @@ name: Publicar versão do app de PC (Windows e Linux)
 
 on:
   push:
+    branches: [main]
     paths: ['lancar.json']
   workflow_dispatch:
 
 permissions:
   contents: write
 
+# Endurecido em 01/11 (revisão de segurança, notas/seguranca.md do fystec/salinha): só do main; nenhuma ação de fora
+# (o lancar.json vem pela própria API do GitHub, deste commit); versão e pedaços conferidos; os arquivos vêm sempre do
+# endereço fixo da Salinha (o "base" do lancar.json tem que ser ele); versão que já existe é erro. O app de PC (1.0.42+)
+# ainda confere o arquivo com o código que a Salinha grava na política (/api/apps, pc.conf) antes de instalar.
 jobs:
   publicar:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Pegar o lancar.json deste commit (sem ação de fora)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/contents/lancar.json?ref=${GITHUB_SHA}" -H "Accept: application/vnd.github.raw+json" > lancar.json
+          jq -e . lancar.json >/dev/null || { echo "lancar.json estragado"; exit 1; }
       - name: Promover a versão de teste (vira a de todo mundo)
         id: promover
         env:
@@ -27,16 +38,23 @@ jobs:
         run: |
           P=$(jq -r '.promover // empty' lancar.json)
           [ -z "$P" ] && exit 0
+          echo "$P" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' || { echo "versão estranha: $P"; exit 1; }
           gh release view "v$P" --json isPrerelease -q .isPrerelease | grep -qx true || { echo "v$P não existe ou já é a de todo mundo"; }
           gh release edit "v$P" --prerelease=false --latest
           echo "✅ v$P agora é a última (a de todo mundo)"
           echo "feito=1" >> "$GITHUB_OUTPUT"
       - name: Juntar e conferir o instalador
         if: steps.promover.outputs.feito != '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           V=$(jq -r .versao lancar.json)
-          BASE=$(jq -r .base lancar.json)
+          echo "$V" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' || { echo "versão estranha: $V"; exit 1; }
+          BASE="https://salinha.live/desktop-rel/$V"
+          [ "$(jq -r .base lancar.json)" = "$BASE" ] || { echo "o base do lancar.json não é o endereço da Salinha ($BASE)"; exit 1; }
           N=$(jq -r .pedacos lancar.json)
+          echo "$N" | grep -Eq '^([1-9]|1[0-9]|20)$' || { echo "número de pedaços estranho: $N"; exit 1; }
+          gh release view "v$V" >/dev/null 2>&1 && { echo "v$V já existe — versão nova precisa de número novo"; exit 1; }
           echo "V=$V" >> "$GITHUB_ENV"
           mkdir out && cd out
           for i in $(seq 0 $((N-1))); do curl -fsSL --retry 5 -o "p$i" "$BASE/Salinha-Setup.exe.part$(printf %02d $i)"; done
@@ -49,6 +67,7 @@ jobs:
           [ "$WANT" = "$GOT" ] || { echo "O instalador chegou diferente do esperado (sha512)"; exit 1; }
           # Linux (opcional): junta os pedaços do AppImage e do .deb e confere os dois pelo latest-linux.yml
           NA=$(jq -r '.linux.appimage // 0' ../lancar.json); ND=$(jq -r '.linux.deb // 0' ../lancar.json)
+          echo "$NA$ND" | grep -Eq '^[0-9]+$' && [ "$NA" -le 20 ] && [ "$ND" -le 20 ] || { echo "pedaços do Linux estranhos"; exit 1; }
           if [ "$NA" -gt 0 ] && [ "$ND" -gt 0 ]; then
             junta() { for i in $(seq 0 $(($2-1))); do curl -fsSL --retry 5 -o "q$i" "$BASE/$1.part$(printf %02d $i)"; done; cat $(for i in $(seq 0 $(($2-1))); do echo q$i; done) > "$1" && rm q*; }
             junta Salinha-x86_64.AppImage "$NA"
@@ -70,7 +89,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cd out
-          gh release view "v$V" >/dev/null 2>&1 && { echo "v$V já existe"; exit 0; }
+          gh release view "v$V" >/dev/null 2>&1 && { echo "v$V já existe"; exit 1; }
           EXTRA=""; [ "${LINUX:-}" = "1" ] && EXTRA="Salinha-x86_64.AppImage salinha_amd64.deb latest-linux.yml"
           # versão de teste: pré-lançamento (não vira a "última", que é a que todo mundo baixa)
           if [ "$(jq -r '.beta // false' ../lancar.json)" = "true" ]; then QUAL="--prerelease"; TITULO="$V (teste)"; else QUAL="--latest"; TITULO="$V"; fi
