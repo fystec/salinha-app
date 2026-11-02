@@ -1,11 +1,11 @@
 {
-  "versao": "1.0.42",
-  "base": "https://salinha.live/desktop-rel/1.0.42",
+  "versao": "1.0.43",
+  "base": "https://salinha.live/desktop-rel/1.0.43",
   "pedacos": 5,
   "linux": {
     "appimage": 5,
     "deb": 5
   },
-  "notas": "Mais segurança: o app confere que a atualização é mesmo da Salinha antes de instalar e corta qualquer captura da tela que não passe pelo seletor.",
+  "notas": "Atualização bem mais rápida e, daqui pra frente, quase toda versão nova chega em 2 segundos, sem instalador. A Salinha não espera mais a internet pra abrir ao ligar o PC, mostra Atualizando a Salinha até a nova abrir e, se der errado, abre sozinha de novo. Junto, as correções de segurança da 1.0.42.",
   "beta": true
 }
