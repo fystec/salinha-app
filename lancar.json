@@ -7,5 +7,6 @@
     "deb": 5
   },
   "notas": "Transmissão de tela nova: sem a borda amarela no Windows (tela inteira e janela), mais firme, e a imagem pelo caminho mais curto quando a internet não fala direto. Android: tela pausada quando o celular bloqueia e trocando de rede sem cair.",
-  "beta": true
+  "beta": true,
+  "promover": "1.0.45"
 }
