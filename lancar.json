@@ -1,12 +1,11 @@
 {
-  "versao": "1.0.45",
-  "base": "https://salinha.live/desktop-rel/1.0.45",
+  "versao": "1.0.46",
+  "base": "https://salinha.live/desktop-rel/1.0.46",
   "pedacos": 5,
   "linux": {
     "appimage": 5,
     "deb": 5
   },
-  "notas": "Transmissão de tela nova: sem a borda amarela no Windows (tela inteira e janela), mais firme, e a imagem pelo caminho mais curto quando a internet não fala direto. Android: tela pausada quando o celular bloqueia e trocando de rede sem cair.",
-  "beta": true,
-  "promover": "1.0.45"
+  "notas": "Barra de tarefas sem travar ao transmitir, seletor de tela por cima do jogo, som da tela sem vazar a chamada e mouse certinho no jogar no PC do amigo. Linux: som da tela sem a chamada e aperte-pra-falar em segundo plano. Android: links da Salinha abrem no app, voz menos picotada e tela cheia em pé.",
+  "beta": true
 }
