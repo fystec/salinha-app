@@ -7,5 +7,6 @@
     "deb": 5
   },
   "notas": "Barra de tarefas sem travar ao transmitir, seletor de tela por cima do jogo, som da tela sem vazar a chamada e mouse certinho no jogar no PC do amigo. Linux: som da tela sem a chamada e aperte-pra-falar em segundo plano. Android: links da Salinha abrem no app, voz menos picotada e tela cheia em pé.",
-  "beta": true
+  "beta": true,
+  "promover": "1.0.46"
 }
